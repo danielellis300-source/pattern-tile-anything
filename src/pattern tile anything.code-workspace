@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "vite-react",
+			"path": "../../vite-react"
+		}
+	],
+	"settings": {}
+}
