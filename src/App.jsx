@@ -157,7 +157,7 @@ function App() {
       tile: tileCanvas,
       width: drawSize,
       height: drawSize,
-      offset: { x: 0, y: 0 },
+      offset: { x: tileCanvas.width / 2, y: tileCanvas.height / 2 },
     });
   }, [tileCanvas, tileWrapSize, motifBg]);
 
@@ -225,7 +225,7 @@ function App() {
       tile,
       width: size,
       height: size,
-      offset: { x: 0, y: 0 },
+      offset: { x: tile.width / 2, y: tile.height / 2 },
     });
 
     const mime = exportFormat === "jpg" ? "image/jpeg" : `image/${exportFormat}`;
