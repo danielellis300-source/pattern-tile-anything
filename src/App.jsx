@@ -100,7 +100,7 @@ function App() {
   const [motifScale, setMotifScale] = useState(0.35);
   const [motifSpacing, setMotifSpacing] = useState(1.1);
   const [rotation, setRotation] = useState(0);
-  const [motifBg, setMotifBg] = useState("#0b0b0b");
+  const [motifBg, setMotifBg] = useState("#FFFFFF");
   const [exportSize, setExportSize] = useState(1024);
   const [exportFormat, setExportFormat] = useState("png");
   const [exportBg, setExportBg] = useState("#FFFFFF");
@@ -196,7 +196,7 @@ function App() {
     setMotifScale(0.35);
     setMotifSpacing(1.1);
     setRotation(0);
-    setMotifBg("#0b0b0b");
+    setMotifBg("#FFFFFF");
   };
 
   const handleClearImage = () => {
@@ -352,7 +352,7 @@ function App() {
                   type="text"
                   value={motifBg}
                   onChange={(event) => setMotifBg(event.target.value)}
-                  placeholder="#000000"
+                  placeholder="#FFFFFF"
                 />
                 <div
                   className="color-preview"
