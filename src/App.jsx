@@ -97,7 +97,7 @@ const drawPattern = ({ ctx, tile, width, height, offset }) => {
 function App() {
   const [image, setImage] = useState(null);
   const [motifScale, setMotifScale] = useState(0.35);
-  const [motifSpacing, setMotifSpacing] = useState(1.1);
+  const [motifSpacing, setMotifSpacing] = useState(5.0);
   const [rotation, setRotation] = useState(0);
   const [motifBg, setMotifBg] = useState("#FFFFFF");
   const [exportSize, setExportSize] = useState(1024);
@@ -190,7 +190,7 @@ function App() {
 
   const handleReset = () => {
     setMotifScale(0.35);
-    setMotifSpacing(1.1);
+    setMotifSpacing(5.0);
     setRotation(0);
     setMotifBg("#FFFFFF");
   };
