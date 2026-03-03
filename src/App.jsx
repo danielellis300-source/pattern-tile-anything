@@ -158,11 +158,7 @@ function App() {
       tile: tileCanvas,
       width: drawSize,
       height: drawSize,
-      // Keep one motif centered in frame regardless of spacing.
-      offset: {
-        x: drawSize / 2 - tileCanvas.width / 2,
-        y: drawSize / 2 - tileCanvas.height / 2,
-      },
+      offset: { x: 0, y: 0 },
     });
   }, [tileCanvas, tileWrapSize, motifBg]);
 
@@ -230,10 +226,7 @@ function App() {
       tile,
       width: size,
       height: size,
-      offset: {
-        x: size / 2 - tile.width / 2,
-        y: size / 2 - tile.height / 2,
-      },
+      offset: { x: 0, y: 0 },
     });
 
     const mime = exportFormat === "jpg" ? "image/jpeg" : `image/${exportFormat}`;
