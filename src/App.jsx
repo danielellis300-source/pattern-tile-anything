@@ -39,6 +39,7 @@ const useResizeObserver = (ref) => {
 };
 
 const TILE_BASE_SIZE = 1600;
+const MAX_PREVIEW_CANVAS_PX = 8192;
 
 const applySmoothing = (ctx) => {
   ctx.imageSmoothingEnabled = true;
@@ -135,10 +136,14 @@ function App() {
     if (!canvas) return;
 
     const size = Math.min(520, Math.max(280, tileWrapSize.width || 320));
-    const drawSize = tileCanvas ? Math.max(size, tileCanvas.width * 2) : size;
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = drawSize * dpr;
-    canvas.height = drawSize * dpr;
+    const desiredDrawSize = tileCanvas ? Math.max(size, tileCanvas.width * 2) : size;
+    // iOS browsers silently fail when canvas backing store exceeds hardware limits.
+    const maxCssSize = Math.max(size, Math.floor(MAX_PREVIEW_CANVAS_PX / dpr));
+    const drawSize = Math.min(desiredDrawSize, maxCssSize);
+
+    canvas.width = Math.floor(drawSize * dpr);
+    canvas.height = Math.floor(drawSize * dpr);
     canvas.style.width = `${size}px`;
     canvas.style.height = `${size}px`;
 
