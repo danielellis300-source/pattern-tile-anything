@@ -96,7 +96,7 @@ const drawPattern = ({ ctx, tile, width, height, offset }) => {
 
 function App() {
   const [image, setImage] = useState(null);
-  const [motifScale, setMotifScale] = useState(0.35);
+  const [motifScale, setMotifScale] = useState(0.25);
   const [motifSpacing, setMotifSpacing] = useState(5.0);
   const [rotation, setRotation] = useState(0);
   const [motifBg, setMotifBg] = useState("#FFFFFF");
@@ -115,7 +115,7 @@ function App() {
     [motifSpacing]
   );
   const motifPixelSize = useMemo(
-    () => clamp(TILE_BASE_SIZE * motifScale, 40, TILE_BASE_SIZE * 1.2),
+    () => clamp(TILE_BASE_SIZE * motifScale, 16, TILE_BASE_SIZE * 1.2),
     [motifScale]
   );
 
@@ -189,7 +189,7 @@ function App() {
   };
 
   const handleReset = () => {
-    setMotifScale(0.35);
+    setMotifScale(0.25);
     setMotifSpacing(5.0);
     setRotation(0);
     setMotifBg("#FFFFFF");
@@ -307,7 +307,7 @@ function App() {
               <div className="control-inline">
                 <input
                   type="range"
-                  min="10"
+                  min="1"
                   max="80"
                   value={Math.round(motifScale * 100)}
                   onChange={(event) => setMotifScale(Number(event.target.value) / 100)}
