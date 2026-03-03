@@ -39,7 +39,6 @@ const useResizeObserver = (ref) => {
 };
 
 const TILE_BASE_SIZE = 1600;
-const MAX_PREVIEW_CANVAS_PX = 8192;
 
 const applySmoothing = (ctx) => {
   ctx.imageSmoothingEnabled = true;
@@ -137,10 +136,7 @@ function App() {
 
     const size = Math.max(240, Math.floor(tileWrapSize.width || 320));
     const dpr = window.devicePixelRatio || 1;
-    const desiredDrawSize = tileCanvas ? Math.max(size, tileCanvas.width * 2) : size;
-    // iOS browsers silently fail when canvas backing store exceeds hardware limits.
-    const maxCssSize = Math.max(size, Math.floor(MAX_PREVIEW_CANVAS_PX / dpr));
-    const drawSize = Math.min(desiredDrawSize, maxCssSize);
+    const drawSize = size;
 
     canvas.width = Math.floor(drawSize * dpr);
     canvas.height = Math.floor(drawSize * dpr);
@@ -162,7 +158,11 @@ function App() {
       tile: tileCanvas,
       width: drawSize,
       height: drawSize,
-      offset: { x: 0, y: 0 },
+      // Keep one motif centered in frame regardless of spacing.
+      offset: {
+        x: drawSize / 2 - tileCanvas.width / 2,
+        y: drawSize / 2 - tileCanvas.height / 2,
+      },
     });
   }, [tileCanvas, tileWrapSize, motifBg]);
 
@@ -230,7 +230,10 @@ function App() {
       tile,
       width: size,
       height: size,
-      offset: { x: 0, y: 0 },
+      offset: {
+        x: size / 2 - tile.width / 2,
+        y: size / 2 - tile.height / 2,
+      },
     });
 
     const mime = exportFormat === "jpg" ? "image/jpeg" : `image/${exportFormat}`;
