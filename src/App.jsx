@@ -135,7 +135,7 @@ function App() {
     const canvas = tileCanvasRef.current;
     if (!canvas) return;
 
-    const size = Math.min(520, Math.max(280, tileWrapSize.width || 320));
+    const size = Math.max(240, Math.floor(tileWrapSize.width || 320));
     const dpr = window.devicePixelRatio || 1;
     const desiredDrawSize = tileCanvas ? Math.max(size, tileCanvas.width * 2) : size;
     // iOS browsers silently fail when canvas backing store exceeds hardware limits.
